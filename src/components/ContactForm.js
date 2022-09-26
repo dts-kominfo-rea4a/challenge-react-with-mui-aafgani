@@ -40,7 +40,7 @@ const ContactForm = (props) => {
       name: name,
       phone: phone,
       email: email,
-      phtoto: photo,
+      photo: photo,
     };
     props.fnAddNewData(contact);
     clearInput();

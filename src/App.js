@@ -3,10 +3,9 @@ import React from "react";
 import Header from "./components/Header";
 import Contact from "./components/Contact";
 import ContactForm from "./components/ContactForm";
-import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
+import List from "@mui/material/List";
 // Uncomment untuk memuat daftar kontak
 import contactsJSON from "./data/contacts.json";
 const App = () => {
@@ -16,14 +15,6 @@ const App = () => {
 
   // Masukkan contacts yang sudah didapat dalam JSON sebagai initial state
   // Buatlah handler untuk menambahkan kontak baru yang akan dikirim ke ContactForm
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-
   const [contacts, setContacts] = React.useState(contactsJSON);
 
   const addContact = (data) => {
@@ -42,7 +33,13 @@ const App = () => {
             <ContactForm fnAddNewData={addContact} />
           </Grid>
           <Grid item md={6}>
-            <Contact data={contacts} />
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            >
+              {contacts.map((dt, i) => (
+                <Contact data={dt} key={i} />
+              ))}
+            </List>
           </Grid>
         </Grid>
       </Container>
